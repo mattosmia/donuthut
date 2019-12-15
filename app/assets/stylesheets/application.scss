@@ -49,6 +49,8 @@ body {
 }
 
 .top-right {
+    line-height: 1.5rem;
+    text-align: right;
     a {
     text-decoration: none;
     color: $pink;
@@ -59,11 +61,14 @@ body {
     }
 }
 
-ul {
-    display: flex;
-    justify-content: space-around;
-    margin:0;
-    list-style-type: none;
+nav,
+.order-options {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        margin:0;
+        list-style-type: none;
+    }
 }
 
 nav {
@@ -415,4 +420,12 @@ label {
     margin-right: auto; 
     display: block;
     
+}
+
+.product-page {
+    display: flex;
+    &__image,
+    &__details {
+        padding: 0.5rem;
+    }
 }

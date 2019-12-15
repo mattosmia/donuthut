@@ -1,18 +1,56 @@
-<% if @cart.empty? %>
-<p>You have not added any items yet</p>
-<% end %>
-<div id="itemsContainer">
+
+
+<div class="itemsContainer">
+
+    <h2>Shopping Cart</h2>
+    <!--Message in case cart is empty-->
+        <div class="empty_msg">
+        <% if @cart.empty? %>
+        <h1>Your cart is empty</h1>
+        <% end %>
+        </div>
+
+
     <table id="customers">
         <% total = 0 %>
+        
         <% @cart.each do |id, quantity| %>
-          <% item = Item.find_by_id(id) %>
-         <tr>
-            <td>
-                <div class="image">
-<%= link_to item.title, item %>
-                </div>
-                </td>
-        </tr>
-    </table>
-      </div>
+        <% item = Item.find_by_id(id) %>
+       
+    <tr>
+       
+         <td>
+        
+        <%= link_to (image_tag item.image_url, :style =>"height:50px"), item %>
+         
+        </td>
 
+        
+            <td class="title"><%= link_to item.title, item %></td>
+            <td><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></td>
+           <td> <a href="/cart/decrease/<%= item.id %>"><i class="fas fa-minus"></i>Remove Donut</a></td>
+           <td> <a href="/cart/increase/<%= item.id %>"><i class="fas fa-plus"></i>Add Donut</a></td>
+            <td class="price"><%= number_to_currency(item.price, :unit =>"€") %></td>
+            <td class="quantity"><%= quantity %></td>
+            <td class="price"><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
+            
+    </tr>
+        <% total += quantity * item.price %>
+        <% end %>
+        <% shipping = total >= 50? 0 : 2 %>
+        <tr>
+            <td>Delivery fee: <% if shipping == 0 %>FREE<% else %><%= number_to_currency(shipping, :unit => "€") %><% end %></td>
+            <td>Total: <%= number_to_currency(total, :unit => "€") %></td>
+          </tr>
+
+        
+    </table>
+    
+    <p>
+    <a href="/items" class="button">Continue Shopping</a>
+    <a href="/clearcart" class="button">Empty Cart</a>
+    <a href="/checkout" class="button">Checkout</a>
+    </p>
+    
+    
+</div>

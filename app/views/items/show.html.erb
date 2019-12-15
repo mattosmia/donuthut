@@ -1,34 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="product-page">
+  <div class="product-page__image">
+    <%= image_tag (@item.image_url) %>
+  </div>
+  <div class="product-page__details">
+    <h2><%= @item.title %></h2>
+    <p><%= @item.description %></p>
+    <strong>&euro;<%= sprintf('%.2f', @item.price) %></strong>
+  </div>
+  </div>
+</div>
+<% if user_signed_in? %>
+    <% if current_user.admin? %>
+        <%= link_to 'Edit', edit_item_path(@item) %> |
+    <% end %>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @item.image_url %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @item.category %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <%= @item.tags %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

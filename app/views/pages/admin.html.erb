@@ -1,12 +1,9 @@
-<% provide(:contentClass, "main-content--home") %>
-
-<h1 class="text-shadow">Our donuts are made fresh throughout the day</h1>
-
-<h2 class="text-shadow">Choose an order option:</h2>
-
-<div class="order-options">
-    <ul>
-        <li><%= link_to 'Collection', items_path %></li>
-        <li><%= link_to 'Delivery', items_path %></li>
-    </ul>
-</div>
+<h1>Admin</h1>
+<% if current_user.admin? %>
+<ul>
+    <li><a href="/items/new">Add new items</a></li>
+    <li><a href="/orders/admin">Review orders</a></li>
+</ul>
+<% else %>
+<p>You don't have permission to access this section</p>
+<% end %>

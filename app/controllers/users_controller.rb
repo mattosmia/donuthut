@@ -12,5 +12,8 @@ class UsersController < ApplicationController
         flash[:notice] = "You have been successfully logged out!!"
         redirect_to :controller => :items
     end    
+    
+    def list
+    end
 
 end
