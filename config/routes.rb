@@ -27,13 +27,11 @@ Rails.application.routes.draw do
       resources :orders
   end
   
-  get '/login' => 'user# login'
-  get '/logout' => 'user#logout'
-
   root 'pages#home'
   
   get '/about' =>'pages#about'
   get '/donuts' => 'items#index'
+  get '/merch' => 'items#index'
   get '/order' => 'pages#order'
   get '/contact' => 'pages#contact'
 end
