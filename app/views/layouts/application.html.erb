@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DonutHut - Fresh donuts every day! <%=yield(:title)%></title>
+    <%= csrf_meta_tags %>
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  </head>
+
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <%=link_to image_tag("donuthut_logo.png", alt: "DonutHut Logo"), "/" %>
+      </div> 
+      
+      <div class="top-right">
+        <% if user_signed_in? %>
+        <a href="#">Hi <%= current_user.email %></a>
+        <%= link_to 'Edit Profile', edit_user_registration_path %>
+        <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+          <div class="shopping-basket"></div>
+        <% else %>
+        <%= link_to 'Register', new_user_registration_path %>
+        <%= link_to 'Login', new_user_session_path %>
+        <% end %>
+      </div>
+    </header>
+    
+    <nav>
+      <ul>
+        <li><%= link_to "Home",'/' %></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Donuts", donuts_path %></li>
+        <li><%= link_to "Merch", donuts_path %></li>
+        <li><%= link_to "Order", about_path %></li>
+        <li><%= link_to "Contact Us", contact_path %></li>
+      </ul>
+    </nav> 
+    <% if notice %>
+    <div class="alert alert--notice"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+    <div class="alert alert--error"><%= alert %></div>
+    <% end %>
+    <section id="maincontent" class="main-content <%=yield(:contentClass)%>">
+      <div class="main-content__wrapper">
+        <%= yield %>
+      </div>
+    </section>
+    
+  
+    <footer class="footer">
+      <div class="footer-col1">
+        <%=link_to image_tag("donuthut_logo.png", alt: "DonutHut Logo"), "/" %>
+      </div>
+      <div class="footer-col2">
+        <ul>
+          <li><h3>Social Media</h3></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col3">
+        <ul>
+          <li><h3>Links</h3></li>
+          <li><a href="#">Work with us</a></li>
+          <li><a href="#">Catering</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-admin">
+        <% if session[:login] == 1 %> 
+        <%= link_to "Admin Logout", {"page"=>"about"} %>
+        <% else %>
+        <%= link_to "Admin Login", {"page"=>"about"} %>
+        <% end %>
+      </div>
+    </footer>
+  
+  </body>
+</html>

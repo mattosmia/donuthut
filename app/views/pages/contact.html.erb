@@ -1,0 +1,21 @@
+<% provide(:title, "| Contact Us") %>
+<% provide(:contentClass, "main-content--contact") %>
+<h1>Contact Us</h1>
+<form id="contactus">
+  <label for="contact_name">Name:*</label>
+  <input type="text" id="contact_name" name="name" required="">
+  
+  <label for="contact_email">Email:*</label>
+  <input type="text" id="contact_email" name="email" required="">
+  
+  <label for="contact_phone">Phone:</label>
+  <input type="text" id="contact_phone" name="phone">
+  
+  <label for="contact_subject">Subject:*</label>
+  <input type="text" id="contact_subject" name="subject">
+  
+  <label for="contact_message">Message:*</label>
+  <textarea id="contact_message" name="message"></textarea>
+  
+  <button class="bn-submit">Send</button>
+</form>

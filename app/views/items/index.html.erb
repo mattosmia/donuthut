@@ -1,0 +1,32 @@
+<h1>Our donuts</h1>
+
+<% if user_signed_in? %>
+    <% if current_user.admin? %>
+        <%= link_to 'Add new item', new_item_path, :class =>"button", :role=>"button" %>
+    <% end %>
+<% end %>
+
+<% @items.each do |item| %>
+<div class="itemhols">
+<h1><%= item.title %></h1>
+
+<%= link_to (image_tag item.image_url, :class => "itemholsIm"), item %>
+
+<p><%= item.description %></p>
+<p>Price <%= number_to_currency(item.price, :unit => "€") %>
+<br>
+Category: <%= item.category %>
+
+<p>
+<%= link_to 'Show',  item, :class => "button", :role => "button" %>
+
+<a href="/cart/<%= item.id %>" class="button">Add Me To Cart</a>
+
+
+
+
+
+</p>
+
+</div>
+<% end %>
