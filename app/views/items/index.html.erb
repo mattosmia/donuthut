@@ -6,9 +6,11 @@
     <% end %>
 <% end %>
 
+<div class="itemsContainer">
+
 <% @items.each do |item| %>
 <div class="itemhols">
-<h1><%= item.title %></h1>
+<h2><%= item.title %></h2>
 
 <%= link_to (image_tag item.image_url, :class => "itemholsIm"), item %>
 
