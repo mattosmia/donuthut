@@ -38,7 +38,7 @@
     <tr>
     </tr>
         <td colspan="7">Total: </td>
-        <td><%= number_to_currency(total, :unit => "€") %></td>
+        <td><%= number_to_currency(total + delivery_fee, :unit => "€") %></td>
     </tr>
 
 
