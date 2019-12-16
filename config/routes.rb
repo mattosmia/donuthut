@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :contacts, only: [:new, :create]
   get '/contact', to: 'contacts#new'
+  get '/thankyou', to: 'contacts#thankyou'
   
   resources :items
   
