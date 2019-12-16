@@ -30,7 +30,7 @@
             | <%= link_to "Admin", admin_path %>
           <% end %><br>
         <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-          <div class="shopping-basket"></div>
+          <div class="shopping-basket"><% @cart %></div>
         <% else %>
         <%= link_to 'Register', new_user_registration_path %><br>
         <%= link_to 'Login', new_user_session_path %>
@@ -44,7 +44,7 @@
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Donuts", donuts_path %></li>
         <li><%= link_to "Merch", merch_path %></li>
-        <li><%= link_to "Contact Us", contact_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
       </ul>
     </nav> 
     <% if notice %>
@@ -54,7 +54,7 @@
     <div class="alert alert--error"><%= alert %></div>
     <% end %>
     <section id="maincontent" class="main-content <%=yield(:contentClass)%>">
-      <div class="main-content__wrapper">
+      <div class="wrapper">
         <%= yield %>
       </div>
     </section>

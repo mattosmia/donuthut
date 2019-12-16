@@ -1,10 +1,23 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    category = params[:cat]
+    if (category)
+      @items = Item.where("category like ? ", category)
+    else
+      @items = Item.all
+    end
+    case category
+      when 'donut'
+        @category_title = 'Our donuts'
+      when 'merch'
+        @category_title = 'Merchandise'
+      else
+        @category_title = 'All products'
+    end
   end
 
   # GET /items/1

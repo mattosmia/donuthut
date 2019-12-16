@@ -1,0 +1,9 @@
+<h1>User list</h1>
+<% if current_user.admin? %>
+<ul>
+    <li><a href="/items/new">Add new items</a></li>
+    <li><a href="/orders/admin">Review orders</a></li>
+</ul>
+<% else %>
+<p>You don't have permission to access this section</p>
+<% end %>
