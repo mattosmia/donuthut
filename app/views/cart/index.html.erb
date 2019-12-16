@@ -1,59 +1,52 @@
 <h1>Your cart</h1>
 
-<div class="itemsContainer">
-
-    
-    <!--Message in case cart is empty-->
-        <div class="empty_msg">
-        <% if @cart.empty? %>
-        <h1>Your cart is empty</h1>
-        <% end %>
-        </div>
+<!--Message in case cart is empty-->
+<% if @cart.empty? %>
+<p class="centred">Your cart is empty</p>
+<% else %>
 
 
-    <table id="customers">
-        <% total = 0 %>
-        
-        <% @cart.each do |id, quantity| %>
-        <% item = Item.find_by_id(id) %>
-       
+<table id="customers">
+<% total = 0 %>
+
+<% @cart.each do |id, quantity| %>
+<% item = Item.find_by_id(id) %>
+<% if item != nil %>
+
+<tr>
+
+<td><%= link_to (image_tag item.image_url, :style =>"height:50px"), item %></td>
+<td class="title"><%= link_to item.title, item %></td>
+<td><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></td>
+<td> <a href="/cart/decrease/<%= item.id %>">-</a></td>
+<td class="quantity"><%= quantity %></td>
+<td> <a href="/cart/increase/<%= item.id %>">+</a></td>
+<td class="price"><%= number_to_currency(item.price, :unit =>"€") %></td>
+<td class="price"><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
+</tr>
+<% total += quantity * item.price %>
+
+<% end %>
+<% end %>
+<% delivery_fee = total >= 50? 0 : 2 %>
+<% if total > 45 && total < 50 %>
+<p>Add another <%= number_to_currency(50 - total, :unit => "€") %> to your order and get FREE delivery!</p>
+<% end %>
     <tr>
-       
-         <td>
-        
-        <%= link_to (image_tag item.image_url, :style =>"height:50px"), item %>
-         
-        </td>
-
-        
-            <td class="title"><%= link_to item.title, item %></td>
-            <td><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></td>
-           <td> <a href="/cart/decrease/<%= item.id %>"><i class="fas fa-minus"></i>Remove Donut</a></td>
-           <td> <a href="/cart/increase/<%= item.id %>"><i class="fas fa-plus"></i>Add Donut</a></td>
-            <td class="price"><%= number_to_currency(item.price, :unit =>"€") %></td>
-            <td class="quantity"><%= quantity %></td>
-            <td class="price"><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
-            
+        <td colspan="7">Delivery fee: </td>
+        <td><% if delivery_fee == 0 %>FREE<% else %><%= number_to_currency(delivery_fee, :unit => "€") %><% end %></td>
+    <tr>
     </tr>
-        <% total += quantity * item.price %>
-        <% end %>
-        <% delivery_fee = total >= 50? 0 : 2 %>
-        <% if total > 45 && total < 50 %>
-        <p>Add another <%= number_to_currency(50 - total, :unit => "€") %> to your order and get FREE delivery!</p>
-        <% end %>
-        <tr>
-            <td>Delivery fee: <% if delivery_fee == 0 %>FREE<% else %><%= number_to_currency(delivery_fee, :unit => "€") %><% end %></td>
-            <td>Total: <%= number_to_currency(total, :unit => "€") %></td>
-          </tr>
+        <td colspan="7">Total: </td>
+        <td><%= number_to_currency(total, :unit => "€") %></td>
+    </tr>
 
-        
-    </table>
-    
-    <p>
-    <a href="/items" class="button">Continue Shopping</a>
-    <a href="/clearcart" class="button">Empty Cart</a>
-    <a href="/checkout" class="button">Checkout</a>
-    </p>
-    
-    
-</div>
+
+</table>
+
+<p class="centred">
+<a href="/donuts" class="button">Continue Shopping</a>
+<a href="/clearcart" class="button">Empty Cart</a>
+<a href="/checkout" class="button">Checkout</a>
+</p>
+<% end %>

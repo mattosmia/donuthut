@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   
   resources :contacts, only: [:new, :create]
   get '/contact', to: 'contacts#new'
-  get '/thankyou', to: 'contacts#thankyou'
+  get '/contact/thankyou', to: 'contacts#thankyou'
+  
+  get '/thankyou', to: 'pages#paid'
   
   resources :items
   
@@ -19,28 +21,35 @@ Rails.application.routes.draw do
       resources :orders
   end
   
-  get 'cart/index'
+  post '/search' => 'items#search'
+  get '/search' => 'pages#home'
+  
+  get '/cart/index'
   get '/cart', to: 'cart#index'
-  get '/cart/:id', to: 'cart#add'
+  get '/cart/collection/:val' => 'cart#setCollection'
   get '/clearcart', to: 'cart#clearCart'
   get '/cart/remove/:id' => 'cart#remove'
   get '/cart/decrease/:id' => 'cart#decrease'
   get '/cart/increase/:id' => 'cart#increase'
+  get '/cart/:id(/:qty)', to: 'cart#add'
 
   resources :orders do
     resources:orderitems
   end
-  get 'orders/admin'
   
-  get 'orderitems/index'
-  get 'orderitems/show'
-  get 'orderitems/new'
-  get 'orderitems/edit'
+  get '/orderitems/index'
+  get '/orderitems/show'
+  get '/orderitems/new'
+  get '/orderitems/edit'
   
   get '/checkout' => 'cart#createOrder'
   get '/paid/:id' => 'static_pages#paid'
   
   get '/admin' => 'pages#admin'
-  get '/users' => 'pages#users'
+  get '/admin/products' => 'items#index'
+  get '/admin/products/new' => 'items#new'
+  get '/admin/orders' => 'orders#admin'
+  get '/admin/users' => 'pages#users'
+  get '/admin/users/:id' => 'pages#users'
   
 end

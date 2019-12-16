@@ -73,7 +73,12 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # Search
+  def search
+    @search_term = params[:q]
+    st = "%#{@search_term}%"
+    @items = Item.where("title ILIKE ? OR category ILIKE ? OR description ILIKE ?", st, st, st)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -82,6 +87,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:title, :description, :price, :image_url, :category, :tags)
+      params.require(:item).permit(:title, :description, :price, :image_url, :category, {:tags => []})
     end
 end

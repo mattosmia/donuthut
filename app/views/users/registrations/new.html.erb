@@ -1,6 +1,7 @@
-<h2>Create an account</h2>
+<h1>Create an account</h1>
+<p class="centred">Already have an account? <%= link_to "Log in", new_session_path(resource_name) %></p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'content-form'}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -19,9 +20,19 @@
   
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <h3>Address</h3>
+  
+  <%= f.label :address1 %>
+  <%= f.text_field :address1, autofocus: true, autocomplete: "address1" %>
+  
+  <%= f.label :address2 %>
+  <%= f.text_field :address2, autofocus: true, autocomplete: "address2" %>
+  
+  <%= f.label :county %>
+  <%= f.text_field :county, autofocus: true, autocomplete: "county" %>
+  
+  <%= f.label :phone %>
+  <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
 
   <%= f.submit "Register", class: "bn-submit" %>
 <% end %>
-
-<%= render "devise/shared/links" %>
-<%= render "users/shared/links" %>

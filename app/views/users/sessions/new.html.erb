@@ -1,6 +1,7 @@
-<h2>Log in</h2>
+<h1>Log in</h1>
+<p class="centred">Don't have an account yet? <%= link_to "Register now", new_session_path(resource_name) %></p>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'content-form'}) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -14,13 +15,11 @@
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :remember_me, :class => 'display-inlineblock' %>
     </div>
   <% end %>
-
+<p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p>
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in" , class: "bn-submit" %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>

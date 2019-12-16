@@ -21,19 +21,19 @@
       <div class="logo">
         <%=link_to image_tag("donuthut_logo.png", alt: "DonutHut Logo"), "/" %>
       </div> 
-      
+      <%= form_tag("/search", :method => "post") do %>
+        <%= text_field_tag :q, nil, :placeholder => 'Search' %>
+      <% end %>
       <div class="top-right">
         <% if user_signed_in? %>
         Welcome back, <%= link_to current_user.name, edit_user_registration_path %>!<br>
-        <%= link_to 'My Account', edit_user_registration_path %> | <%= link_to "My Orders", orders_path  %>
-          <% if current_user.admin? %>
-            | <%= link_to "Admin", admin_path %>
-          <% end %><br>
+        <%= link_to 'My Account', edit_user_registration_path %> | 
+        <%= link_to "My Orders", orders_path  %> |
         <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-          <div class="shopping-basket"><% @cart %></div>
+        <% if current_user.admin? %> | <strong><%= link_to "Admin Dashboard", admin_path %><% end %></strong><br>
+          <div class="shopping-basket"><a href="/cart">&euro; <%= @total_cart %></a></div>
         <% else %>
-        <%= link_to 'Register', new_user_registration_path %><br>
-        <%= link_to 'Login', new_user_session_path %>
+        <%= link_to 'Register', new_user_registration_path %> |     <%= link_to 'Login', new_user_session_path %>
         <% end %>
       </div>
     </header>

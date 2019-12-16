@@ -1,15 +1,32 @@
 class CartController < ApplicationController
   before_action :authenticate_user!
-######### start of add to cart logic ######### 
   
+######### start of add to cart logic ######### 
+  @is_collection = false;
+  def setCollection
+    is_collection = :val
+    session[:is_collection] = is_collection
+    @is_collection = session[:is_collection]
+    
+    if session[:cart] then
+      redirect_to '/cart'
+    else
+      redirect_to '/donuts'
+    end
+  end
+
   def add
     # we need the id of the product to be added
     # lets get it now
     
     id = params[:id]
+    qty = params[:qty].to_i
+    if (qty == 0) then
+      qty = 1
+    end
+      
     # if the cart exists already use it if not make a new one
     if session[:cart] then
-      
       cart = session[:cart]
     else
       session[:cart] = {}
@@ -19,11 +36,9 @@ class CartController < ApplicationController
     # If the product is in the cart then increase the existing quantity by 1
     
     if cart[id] then
-      cart[id] = cart[id] + 1 # this is the actual increase quantity part
+      cart[id] = cart[id] + qty # this is the actual increase quantity part
     else
-    
-      cart[id] = 1
-    
+      cart[id] = qty
     end
     
     redirect_to :action => :index
@@ -39,7 +54,6 @@ class CartController < ApplicationController
       @cart = session[:cart] # if session exists the pass cart contents to the cart view
      else 
        @cart = {} # if the cart isnt a session the say the cart contents is empty
-       
     end  
     
   end
@@ -60,7 +74,7 @@ class CartController < ApplicationController
     cart = session[:cart]
     cart.delete id
     
-    redirect_to :root
+    redirect_to '/cart'
   end
 
 

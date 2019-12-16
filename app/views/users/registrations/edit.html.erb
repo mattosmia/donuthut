@@ -34,6 +34,20 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  
+  <h3>Address</h3>
+  
+  <%= f.label :address1 %>
+  <%= f.text_field :address1, autofocus: true, autocomplete: "address1" %>
+  
+  <%= f.label :address2 %>
+  <%= f.text_field :address2, autofocus: true, autocomplete: "address2" %>
+  
+  <%= f.label :county %>
+  <%= f.text_field :county, autofocus: true, autocomplete: "county" %>
+  
+  <%= f.label :phone %>
+  <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />

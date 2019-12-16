@@ -1,19 +1,15 @@
 class UsersController < ApplicationController
-    def login
-        session[:login] = 1
-        session[:cart] = nil
-        flash[:notice] = "Admin Login sucessfull!!"
-        redirect_to :controller => :items
-    end 
-    
-    def logout
-        session[:login] = nil
-        session[:cart] = nil
-        flash[:notice] = "You have been successfully logged out!!"
-        redirect_to :controller => :items
-    end    
-    
-    def list
-    end
+   def edit
+     @user = User.find(params[:id])
+   end
 
+
+   def update
+     @user = User.find(params[:id])
+     if @user.update(user_params)
+       redirect_to adminpanel_path
+     else
+       render 'edit'
+     end
+   end
 end

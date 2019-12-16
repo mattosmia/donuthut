@@ -9,9 +9,9 @@ $white: #f3f3f3;
 $white--light: #fff;
 $grey: #8f888c;
 $error--border: rgba(219, 112, 132, 1);
-$error--bg: rgba(219, 112, 132, 0.2);
+$error--bg: rgba(219, 112, 132,1);
 $success--border: rgba(109, 153, 84, 1);
-$success--bg: rgba(109, 153, 84, 0.2);
+$success--bg: rgba(109, 153, 84, 1);
 $radius: 4px;
 
 * {
@@ -43,6 +43,7 @@ body {
     justify-content: space-between;
     margin: 2%;
     font-weight: lighter;
+    align-items: center;
 
     img {
         height: 2.5rem;
@@ -59,6 +60,7 @@ body {
 }
 
 .top-right {
+    font-size: 0.75rem;
     line-height: 1.5rem;
     text-align: right;
     a {
@@ -98,14 +100,31 @@ nav {
     }
 }
 
+
+a {
+    text-decoration: underline;
+    color: $pink--dark;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 .main-content {
     background: $white--light;
     
     h1 {
         font-size: 1.5rem;
         margin-bottom: 1.25rem;
-        text-decoration: underline $pink--dark wavy;
+        position: relative;
         text-align: center;
+        &:after {
+            content: '';
+            width: 40px;
+            height: 5px;
+            display: block;
+            margin: 0.5rem auto 0;
+            background: $pink--dark;
+        }
     }
     
     &--home {
@@ -126,6 +145,7 @@ nav {
     
         h1 {
             font-size: 2rem;
+            text-decoration: none;
         }
     }
 }
@@ -166,10 +186,10 @@ footer {
     }
 }
 
-.empty_msg{
+.centred {
     text-align: center;
+    margin: 0 auto;
 }
-
     
 // form
 form.content-form {
@@ -179,7 +199,7 @@ form.content-form {
     margin: 0 auto;
 }
 
-input, select, textarea {
+input:not([type="checkbox"]), select, textarea {
     font-size: 1rem;
     width: 100%;
     max-width: 600px;
@@ -278,14 +298,16 @@ button, .bn-submit {
 }
 
 .shopping-basket {
+    padding-left: 30px;
 	background-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIC0zNiA1MTIuMDAxIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMjU2IDIxOS45ODgyODFjNS41MTk1MzEgMCAxMC00LjQ4MDQ2OSAxMC0xMHMtNC40ODA0NjktMTAtMTAtMTAtMTAgNC40ODA0NjktMTAgMTAgNC40ODA0NjkgMTAgMTAgMTB6bTAgMCIvPjxwYXRoIGQ9Im00NzIgMTM5Ljk4ODI4MWgtNTkuMTM2NzE5bC05MC45Njg3NS0xMjUuMTUyMzQzYy04LjE3MTg3NS0xNC4wMDM5MDctMjYuMTcxODc1LTE4Ljk4ODI4Mi00MC40Njg3NS0xMS4wNzAzMTMtMTQuNDkyMTg3IDguMDUwNzgxLTE5LjcwMzEyNSAyNi4zMDQ2ODctMTEuNjQ4NDM3IDQwLjgwMDc4MS4yMzA0NjguNDEwMTU2LjQ4NDM3NS44MDQ2ODguNzY5NTMxIDEuMTc5Njg4bDcxLjM1MTU2MyA5NC4yNDIxODdoLTE3MS43OTY4NzZsNzEuMzUxNTYzLTk0LjI0MjE4N2MuMjgxMjUtLjM3NS41MzkwNjMtLjc2OTUzMi43Njk1MzEtMS4xNzk2ODggOC4wMzUxNTYtMTQuNDYwOTM3IDIuODgyODEzLTMyLjczMDQ2OC0xMS42NjAxNTYtNDAuODA4NTk0LTE0LjI2NTYyNS03LjkwMjM0My0zMi4yNjU2MjUtMi45MjE4NzQtNDAuNDUzMTI1IDExLjA3MDMxM2wtOTAuOTcyNjU2IDEyNS4xNjAxNTZoLTU5LjEzNjcxOWMtMjIuMDU0Njg4IDAtNDAgMTcuOTQ1MzEzLTQwIDQwIDAgMTcuMzk0NTMxIDExLjI4OTA2MiAzMi41MzkwNjMgMjcuMTkxNDA2IDM3Ljg5ODQzOCAxLjY5NTMxMyAxLjMxMjUgMy44MTI1IDIuMTAxNTYyIDYuMTE3MTg4IDIuMTAxNTYyLjQ2MDkzNyAwIC44OTQ1MzEuMDI3MzQ0IDEuMzQ3NjU2LjA4OTg0NCA0LjMwNDY4OC41NzgxMjUgNy43MTQ4NDQgMy44NDM3NSA4LjQ5NjA5NCA4LjExNzE4N2wzNC4wMTk1MzEgMTg3LjE2NDA2M2MyLjU5NzY1NiAxNC4yNjk1MzEgMTUuMDExNzE5IDI0LjYyODkwNiAyOS41MTk1MzEgMjQuNjI4OTA2aDI5OC42MTcxODhjMTQuNTA3ODEyIDAgMjYuOTIxODc1LTEwLjM1OTM3NSAyOS41MTk1MzEtMjQuNjMyODEybDM0LjAxOTUzMS0xODcuMTU2MjVjLjc4MTI1LTQuMjc3MzQ0IDQuMTk1MzEzLTcuNTQyOTY5IDguNTE1NjI1LTguMTIxMDk0LjQzNzUtLjA2MjUuODcxMDk0LS4wODk4NDQgMS4zMjgxMjUtLjA4OTg0NCAyLjMyMDMxMyAwIDQuNDUzMTI1LS43OTY4NzUgNi4xNDg0MzgtMi4xMjUgMTUuOTE0MDYyLTUuMzk0NTMxIDI3LjE2MDE1Ni0yMC41MTE3MTkgMjcuMTYwMTU2LTM3Ljg3NSAwLTIyLjA1NDY4Ny0xNy45NDUzMTItNDAtNDAtNDB6bS0xODUuMDExNzE5LTEwNS42NjAxNTZjLTIuMjg1MTU2LTQuNzMwNDY5LS41MTE3MTktMTAuNDkyMTg3IDQuMTM2NzE5LTEzLjA3MDMxMyA0LjgzOTg0NC0yLjY4MzU5MyAxMC45NDE0MDYtLjk1MzEyNCAxMy42MDkzNzUgMy44NTU0NjkuMTk1MzEzLjM1OTM3NS40MTc5NjkuNzAzMTI1LjY1NjI1IDEuMDMxMjVsODIuNzQ2MDk0IDExMy44NDM3NWgtMjEuMTU2MjV6bS04MC4zNzg5MDYtOC4xNzk2ODdjLjIzODI4MS0uMzI4MTI2LjQ1MzEyNS0uNjY3OTY5LjY1MjM0NC0xLjAxOTUzMiAyLjY3NTc4MS00LjgxMjUgOC43ODEyNS02LjU0Njg3NSAxMy42MDE1NjItMy44Nzg5MDYgNC42NTYyNSAyLjU4NTkzOCA2LjQzNzUgOC4zMzk4NDQgNC4xNDg0MzggMTMuMDc4MTI1bC03OS45OTIxODggMTA1LjY2MDE1NmgtMjEuMTU2MjV6bTI2NS4zOTA2MjUgMTczLjgzOTg0M2gtMTc2Yy01LjUyMzQzOCAwLTEwIDQuNDc2NTYzLTEwIDEwIDAgNS41MjM0MzggNC40NzY1NjIgOS44OTg0MzggMTAgOS44OTg0MzhoMTU0LjM5ODQzOGMtLjUyMzQzOCAxLjQ5MjE4Ny0uOTM3NSAzLjAzOTA2Mi0xLjIyNjU2MyA0LjYzMjgxMmwtMzQuMDIzNDM3IDE4Ny4yNTc4MTNjLS44NjMyODIgNC43NTc4MTItNS4wMDM5MDcgOC4yMTA5MzctOS44Mzk4NDQgOC4yMTA5MzdoLTI5OC42MTcxODhjLTQuODM5ODQ0IDAtOC45NzY1NjItMy40NTMxMjUtOS44NDM3NS04LjIwNzAzMWwtMzQuMDE5NTMxLTE4Ny4xNjQwNjJjLS4yODkwNjMtMS41OTM3NS0uNzAzMTI1LTMuMTQwNjI2LTEuMjI2NTYzLTQuNjI4OTA3aDE1NC4zOTg0MzhjNS41MjM0MzggMCAxMC00LjQ3NjU2MiAxMC0xMCAwLTUuNTIzNDM3LTQuNDc2NTYyLTEwLTEwLTEwaC0xNzZjLTExLjEyMTA5NCAwLTIwLTkuMDYyNS0yMC0yMCAwLTExLjAyNzM0MyA4Ljk3MjY1Ni0yMCAyMC0yMGg0MzJjMTEuMDI3MzQ0IDAgMjAgOC45NzI2NTcgMjAgMjAgMCAxMS4xMDU0NjktOS4wODU5MzggMjAtMjAgMjB6bTAgMCIvPjxwYXRoIGQ9Im0yNTYgMjQ5Ljk4ODI4MWMtMTYuNTQyOTY5IDAtMzAgMTMuNDU3MDMxLTMwIDMwdjgwYzAgMTYuNTQyOTY5IDEzLjQ1NzAzMSAzMCAzMCAzMHMzMC0xMy40NTcwMzEgMzAtMzB2LTgwYzAtMTYuNTc0MjE5LTEzLjQyNTc4MS0zMC0zMC0zMHptMTAgMTEwYzAgNS41MTU2MjUtNC40ODQzNzUgMTAtMTAgMTBzLTEwLTQuNDg0Mzc1LTEwLTEwdi04MGMwLTUuNTE1NjI1IDQuNDg0Mzc1LTEwIDEwLTEwIDUuNTE5NTMxIDAgMTAgNC40ODA0NjkgMTAgMTB6bTAgMCIvPjxwYXRoIGQ9Im0zNTYgMzg5Ljk4ODI4MWMxNi41NDI5NjkgMCAzMC0xMy40NTcwMzEgMzAtMzB2LTgwYzAtMTYuNTc0MjE5LTEzLjQyNTc4MS0zMC0zMC0zMC0xNi41NDI5NjkgMC0zMCAxMy40NTcwMzEtMzAgMzB2ODBjMCAxNi41NDI5NjkgMTMuNDU3MDMxIDMwIDMwIDMwem0tMTAtMTEwYzAtNS41MTU2MjUgNC40ODQzNzUtMTAgMTAtMTAgNS41MTk1MzEgMCAxMCA0LjQ4MDQ2OSAxMCAxMHY4MGMwIDUuNTE1NjI1LTQuNDg0Mzc1IDEwLTEwIDEwcy0xMC00LjQ4NDM3NS0xMC0xMHptMCAwIi8+PHBhdGggZD0ibTE1NiAyNDkuOTg4MjgxYy0xNi41NDI5NjkgMC0zMCAxMy40NTcwMzEtMzAgMzB2ODBjMCAxNi41NDI5NjkgMTMuNDU3MDMxIDMwIDMwIDMwczMwLTEzLjQ1NzAzMSAzMC0zMHYtODBjMC0xNi41NzQyMTktMTMuNDI1NzgxLTMwLTMwLTMwem0xMCAxMTBjMCA1LjUxNTYyNS00LjQ4NDM3NSAxMC0xMCAxMHMtMTAtNC40ODQzNzUtMTAtMTB2LTgwYzAtNS41MTU2MjUgNC40ODQzNzUtMTAgMTAtMTAgNS41MTk1MzEgMCAxMCA0LjQ3NjU2MyAxMCAxMHptMCAwIi8+PC9zdmc+);
-    width: 45px;
     height: 25px;
-    background-size: contain;
+    background-size: 25px auto;
     background-repeat: no-repeat;
+    background-position: left center;
     text-align: right;
     line-height: 25px;
     font-size: 0.75rem;
+    display: inline-block;
 }
 
 .inline-checkbox {
@@ -359,6 +381,7 @@ label {
 
 .alert {
     display: inline-block;
+    position: absolute;
     padding: 0.75rem 2rem;
     border-radius: $radius;
     &--notice {
