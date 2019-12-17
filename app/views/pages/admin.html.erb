@@ -1,0 +1,11 @@
+<% if user_signed_in? && current_user.admin? %>
+<h1>Admin</h1>
+<ul>
+    <li><a href="/admin/products">Update existing products</a></li>
+    <li><a href="/admin/products/new">Add new products</a></li>
+    <li><a href="/admin/orders">Review orders</a></li>
+    <li><a href="/admin/users">Manage users</a></li>
+</ul>
+<% else %>
+<p>You don't have permission to access this section</p>
+<% end %>

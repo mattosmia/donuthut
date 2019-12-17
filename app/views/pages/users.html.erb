@@ -1,0 +1,35 @@
+<% if user_signed_in? && current_user.admin? %>
+    <h1>User list</h1>
+    <table style="
+    width: 100%;
+    max-width: 550px;
+    text-align: center; margin:0 auto;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.name %></td>
+                <td>
+                    <% if user.admin %>
+                        Yes (<a href="/admin/users/downgradeadmin/<%= user.id %>">Downgrade</a>)
+                    <% else %>
+                        No (<a href="/admin/users/upgradeadmin/<%= user.id %>">Upgrade</a>)
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <p>You don't have permission to access this section</p>
+<% end %>

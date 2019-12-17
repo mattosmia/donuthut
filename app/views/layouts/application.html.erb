@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html>
+  
+  <!DOCTYPE html>
+  <html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Camila Mattos x19140096, Tatiana Carrillo x19153864">
     <title>DonutHut - Fresh donuts every day! <%=yield(:title)%></title>
     <%= csrf_meta_tags %>
     
@@ -16,16 +21,19 @@
       <div class="logo">
         <%=link_to image_tag("donuthut_logo.png", alt: "DonutHut Logo"), "/" %>
       </div> 
-      
+      <%= form_tag("/search", :method => "post") do %>
+        <%= text_field_tag :q, nil, :placeholder => 'Search' %>
+      <% end %>
       <div class="top-right">
         <% if user_signed_in? %>
-        <a href="#">Hi <%= current_user.email %></a>
-        <%= link_to 'Edit Profile', edit_user_registration_path %>
+        Welcome back, <%= link_to current_user.name, edit_user_registration_path %>!<br>
+        <%= link_to 'My Account', edit_user_registration_path %> | 
+        <%= link_to "My Orders", orders_path  %> |
         <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-          <div class="shopping-basket"></div>
+        <% if current_user.admin? %> | <strong><%= link_to "Admin Dashboard", admin_path %><% end %></strong><br>
+          <div class="shopping-basket"><a href="/cart">&euro; <%= @total_cart %></a></div>
         <% else %>
-        <%= link_to 'Register', new_user_registration_path %>
-        <%= link_to 'Login', new_user_session_path %>
+        <%= link_to 'Register', new_user_registration_path %> |     <%= link_to 'Login', new_user_session_path %>
         <% end %>
       </div>
     </header>
@@ -35,9 +43,8 @@
         <li><%= link_to "Home",'/' %></li>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Donuts", donuts_path %></li>
-        <li><%= link_to "Merch", donuts_path %></li>
-        <li><%= link_to "Order", about_path %></li>
-        <li><%= link_to "Contact Us", contact_path %></li>
+        <li><%= link_to "Merch", merch_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
       </ul>
     </nav> 
     <% if notice %>
@@ -47,7 +54,7 @@
     <div class="alert alert--error"><%= alert %></div>
     <% end %>
     <section id="maincontent" class="main-content <%=yield(:contentClass)%>">
-      <div class="main-content__wrapper">
+      <div class="wrapper">
         <%= yield %>
       </div>
     </section>
@@ -72,13 +79,6 @@
           <li><a href="#">Catering</a></li>
           <li><a href="#">Contact Us</a></li>
         </ul>
-      </div>
-      <div class="footer-admin">
-        <% if session[:login] == 1 %> 
-        <%= link_to "Admin Logout", {"page"=>"about"} %>
-        <% else %>
-        <%= link_to "Admin Login", {"page"=>"about"} %>
-        <% end %>
       </div>
     </footer>
   

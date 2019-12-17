@@ -1,4 +1,4 @@
-<%= form_for(item) do |f| %>
+<%= form_for(item, :html => {:class => 'content-form'}) do |f| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -41,7 +41,5 @@
     <%= f.text_field :tags %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit :class => 'button' %>
 <% end %>

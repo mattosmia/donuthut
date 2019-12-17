@@ -1,34 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? && current_user.admin? %>
+        Admin actions: <%= link_to 'Edit', edit_item_path(@item) %> | <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<div class="product-page">
+  <div class="product-page__image">
+    <%= image_tag (@item.image_url) %>
+  </div>
+  <div class="product-page__details">
+    <h2><%= @item.title %></h2>
+    <p><%= @item.description %></p>
+    <strong>&euro;<%= sprintf('%.2f', @item.price) %></strong>
+    <p><a href="/cart/<%= @item.id %>" class="button">Add to cart</a></p>
+    <p class="centred"><%= link_to 'Back', (@item.category == 'merch'? merch_path : donuts_path) %></p>
+  </div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @item.image_url %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @item.category %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <%= @item.tags %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>

@@ -1,6 +1,6 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1>Edit Account</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'content-form'}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -34,6 +34,20 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  
+  <h3>Address</h3>
+  
+  <%= f.label :address1 %>
+  <%= f.text_field :address1, autofocus: true, autocomplete: "address1" %>
+  
+  <%= f.label :address2 %>
+  <%= f.text_field :address2, autofocus: true, autocomplete: "address2" %>
+  
+  <%= f.label :county %>
+  <%= f.text_field :county, autofocus: true, autocomplete: "county" %>
+  
+  <%= f.label :phone %>
+  <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />

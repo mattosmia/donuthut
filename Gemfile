@@ -16,6 +16,8 @@ gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 # Use Devise for user authentication
 gem 'devise'
+# Use MailForm to send contact form emails
+gem 'mail_form'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -33,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#seed_dump for creating db:seed files
+gem 'seed_dump'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

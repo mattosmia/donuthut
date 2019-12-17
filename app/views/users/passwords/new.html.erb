@@ -1,6 +1,6 @@
-<h2>Forgot your password?</h2>
+<h1>Forgot your password?</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'content-form' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -9,8 +9,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Reset my password" , class: "bn-submit" %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
