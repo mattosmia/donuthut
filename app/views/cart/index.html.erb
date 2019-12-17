@@ -16,13 +16,13 @@
 <tr>
 
 <td><%= link_to (image_tag item.image_url, :style =>"height:50px"), item %></td>
-<td class="title"><%= link_to item.title, item %></td>
-<td><a href="/cart/remove/<%= item.id %>">Remove From Cart</a></td>
+<td class="title" style="padding-right:75px"><%= link_to item.title, item %></td>
 <td> <a href="/cart/decrease/<%= item.id %>">-</a></td>
 <td class="quantity"><%= quantity %></td>
 <td> <a href="/cart/increase/<%= item.id %>">+</a></td>
-<td class="price"><%= number_to_currency(item.price, :unit =>"€") %></td>
+<td class="price" style="padding-left:75px"><%= number_to_currency(item.price, :unit =>"€") %></td>
 <td class="price"><%= number_to_currency(quantity * item.price, :unit =>"€") %></td>
+<td><a href="/cart/remove/<%= item.id %>"><%= image_tag("bin.svg", alt: "Remove from cart", style: 'width: 20px;') %></a></td>
 </tr>
 <% total += quantity * item.price %>
 
@@ -33,12 +33,14 @@
 <p class="centred">Add another <%= number_to_currency(50 - total, :unit => "€") %> to your order and get FREE delivery!</p>
 <% end %>
     <tr>
-        <td colspan="7">Delivery fee: </td>
+        <td colspan="6" class="text-right">Delivery fee: </td>
         <td><% if delivery_fee == 0 %>FREE<% else %><%= number_to_currency(delivery_fee, :unit => "€") %><% end %></td>
+        <td></td>
     <tr>
     </tr>
-        <td colspan="7">Total: </td>
+        <td colspan="6" class="text-right">Total: </td>
         <td><%= number_to_currency(total + delivery_fee, :unit => "€") %></td>
+        <td></td>
     </tr>
 
 
