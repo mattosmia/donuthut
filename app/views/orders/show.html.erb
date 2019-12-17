@@ -6,15 +6,15 @@
   <table id="customers">
   <tr>
     <td>Order date:</td>
-<% if @user.admin == true %>
+<% if current_user.admin == true %>
     <td>Ordered By</td>
 <% end %>
-    <td>Order date:</td>
+    <td>Order Status:</td>
   </tr>
   
   <tr>
     <td><%= @order.order_date %></td>
-<% if @user.admin == true %>
+<% if current_user.admin == true %>
     <td><%= @order.user.email %></td>
 <% end %>
     <td><%= @order.status %></td>
@@ -23,12 +23,12 @@
   
   </table>
   
-  <h2>Order Items</h2>
+  <h1>Order Items</h1>
   
   <table id="customers">
    <% @orderitems.each do |orderitem| %>
       <tr>
-        <td><%= orderitem.created_at %></td>
+        <!--td><%= orderitem.created_at %></td-->
         
         <td><%= orderitem.title %></td>
        <td><%= orderitem.order_id %></td>
@@ -40,12 +40,12 @@
    </table>
       
 </div>
-  
+  <p class="centred">
 <% if @user.admin == true %>
   <%= link_to 'Edit', edit_order_path(@order), :class =>"button" %>
 <% end %>
   <%= link_to 'Back', orders_path, :class =>"button" %>
-
+</p>
 <% else %>
    
 <p>You cannot view this order</p>
