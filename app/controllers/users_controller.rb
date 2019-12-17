@@ -12,4 +12,16 @@ class UsersController < ApplicationController
        render 'edit'
      end
    end
+   def upgradeadmin
+        @user = User.find(params[:id])
+        @user.update_attribute(:admin, true)
+        redirect_to '/admin/users'
+    end
+    
+    def downgradeadmin
+        @user = User.find(params[:id])
+       @user.update_attribute(:admin, false)
+         redirect_to '/admin/users'
+    end    
+
 end

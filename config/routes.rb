@@ -49,7 +49,9 @@ Rails.application.routes.draw do
   get '/admin/products' => 'items#index'
   get '/admin/products/new' => 'items#new'
   get '/admin/orders' => 'orders#admin'
-  get '/admin/users' => 'pages#users'
-  get '/admin/users/:id' => 'pages#users'
   
+  get '/admin/users/upgradeadmin/:id' => 'users#upgradeadmin'
+  get '/admin/users/downgradeadmin/:id' => 'users#downgradeadmin'
+  
+  get '/admin/users(/:id)' => 'pages#users'
 end
