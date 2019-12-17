@@ -2,17 +2,17 @@
 
 This application requires postgresql to be preinstalled and running. In Cloud9, for better performance, we used Ubuntu as our distro.
 
-`sudo apt-get install postgresql`
-`sudo apt-get install libpq-dev`
-`gem install pg`
-
-`sudo service postgresql start`
-
-`sudo -u postgres createuser -s donuthut`
-`sudo -u postgres psql`
-`postgres=# create database donuthut_development;`
-`postgres=# create user donuthut with encrypted password 'password1';`
-`postgres=# grant all privileges on database donuthut_development to donuthut;`
+`sudo apt-get install postgresql`  
+`sudo apt-get install libpq-dev`  
+`gem install pg`  
+  
+`sudo service postgresql start`  
+  
+`sudo -u postgres createuser -s donuthut`  
+`sudo -u postgres psql`  
+`postgres=# create database donuthut_development;`  
+`postgres=# create user donuthut with encrypted password 'password1';`  
+`postgres=# grant all privileges on database donuthut_development to donuthut;`  
 
 database.yml may need to be updated to point to the database, for example
 ```development:
